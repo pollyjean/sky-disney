@@ -8,7 +8,17 @@ import styled from "styled-components";
 const List = styled.ul`
   display: grid;
   grid-template-columns: 4fr 4fr 4fr 4fr;
+  max-width: 80rem;
   gap: 2rem;
+  padding: 0;
+  @media (max-width: 60rem) {
+    grid-template-columns: 3fr 3fr 3fr;
+    gap: 1.8rem;
+  }
+  @media (max-width: 45rem) {
+    grid-template-columns: 2fr 2fr;
+    gap: 1.6rem;
+  }
 `;
 
 const CharacterList = () => {
