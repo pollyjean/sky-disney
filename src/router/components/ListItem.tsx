@@ -11,7 +11,16 @@ const Item = styled.li`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.5rem 1rem;
+    border-radius: 1rem;
     gap: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    &:hover,
+    &:active,
+    &:focus {
+      color: ${(props) => props.theme.bgColor};
+      background-color: ${(props) => props.theme.textColor};
+    }
   }
 `;
 

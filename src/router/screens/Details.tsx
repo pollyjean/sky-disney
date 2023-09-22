@@ -27,8 +27,9 @@ const TagList = styled.ul`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  max-width: 60%;
   flex-wrap: wrap;
+  padding: 0;
+  min-width: 90%;
 `;
 
 const Tag = styled.li`
@@ -36,8 +37,15 @@ const Tag = styled.li`
   padding: 0.5rem 1rem;
   color: ${(props) => props.theme.bgColor};
   background-color: ${(props) => props.theme.textColor};
+  min-width: 5rem;
   gap: 0.5rem;
   border-radius: 1rem;
+  text-align: center;
+`;
+
+const PageLink = styled(Link)`
+  display: inline-flex;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Details = () => {
@@ -53,7 +61,7 @@ const Details = () => {
       <ImageBox url={data?.imageUrl} />
       <h2>
         {data?.name}
-        {data?.name && <Link to={data?.sourceUrl as string}>({data?.name}'s Page)</Link>}
+        {data?.name && <PageLink to={data?.sourceUrl as string}>({data?.name}'s Page)</PageLink>}
       </h2>
 
       <TagWrap>
