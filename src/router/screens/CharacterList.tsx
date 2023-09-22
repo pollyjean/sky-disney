@@ -3,27 +3,28 @@ import { CharacterListApi } from "../../commonConfig";
 import { fetchCharacterList } from "../../api";
 import { ErrorPage, Loader } from ".";
 import { ListItem } from "../components";
+import styled from "styled-components";
+
+const List = styled.ul`
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr 4fr;
+  gap: 2rem;
+`;
 
 const CharacterList = () => {
   const { isLoading, error, data } = useQuery<CharacterListApi[]>({
     queryKey: ["characterList"],
     queryFn: fetchCharacterList,
   });
-  if (isLoading) {
-    return <Loader />;
-  }
-  if (error) {
-    console.error("Error :", error);
-    return <ErrorPage />;
-  }
+  if (isLoading) return <Loader />;
+  if (error) return <ErrorPage error={error as string} />;
+  const filteredData = data?.slice(0, 100);
   return (
-    <div>
-      <ul>
-        {data?.slice(0, 50).map((item) => (
-          <ListItem key={item.id} {...item} />
-        ))}
-      </ul>
-    </div>
+    <List>
+      {filteredData?.map((item) => (
+        <ListItem key={item.id} {...item} />
+      ))}
+    </List>
   );
 };
 
